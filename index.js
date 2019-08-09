@@ -2,7 +2,7 @@ let axios = require("axios");
 let cheerio = require("cheerio");
 const express = require("express");
 const app = express();
-const port = 80;
+const port = 8000;
 app.get("/:id", (req, res) => {
   var param = req.params.id;
   console.log(param);
@@ -30,4 +30,9 @@ app.get("/:id", (req, res) => {
     })
     .catch(error => console.log(error));
 });
+
+app.get("/", (req, res) => {
+  res.send("Data From Google");
+});
+
 app.listen(port, () => console.log(`Example app listening on port ${port}!`));
