@@ -2,7 +2,7 @@ let axios = require("axios");
 let cheerio = require("cheerio");
 const express = require("express");
 const app = express();
-const port = 8000;
+const port = 80;
 app.get("/:id", (req, res) => {
   var param = req.params.id;
   console.log(param);
