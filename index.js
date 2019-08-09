@@ -31,18 +31,6 @@ app.get("/:id", (req, res) => {
             max = resultArray[z].length;
           }
         }
-        // for (var j = 0; j < title.length; j++) {
-        //   let arrayControl = title[j].children[0].data;
-        //   console.log(arrayControl);
-        //   if (arrayControl.length > max) {
-        //     max = arrayControl.length;
-        //     result = arrayControl;
-        //     console.log(title[j].length);
-        //   } else if (title[j].children[0].data.length == undefined) {
-        //     console.log("undefined");
-        // -------------->>>>>title[2].children[0].data,  }
-        //   console.log(result);
-        // }
         res.setHeader("Content-Type", "application/json");
         res.end(JSON.stringify({ data: result, unused: resultArray }));
       }
