@@ -18,15 +18,16 @@ app.get("/:id", (req, res) => {
       if (response.status === 200) {
         const html = response.data;
         const $ = cheerio.load(html);
-        title = $("div.AP7Wnd");
-        result = title.text();
-        test = result.split(".");
-        array = [];
-        for (var i = 0; i < 10; i++) {
-          array.push(test[i]);
-        }
+        title = $("div.BNeawe");
+        // result = title.text();
+        // test = result;
+        // array = [];
+        // for (var i = 0; i < test.length; i++) {
+        //   array.push(test[i]);
+        // }
+        console.log(title[2]);
         res.setHeader("Content-Type", "application/json");
-        res.end(JSON.stringify({ data: array }));
+        res.end(JSON.stringify({ data: title }));
       }
     })
     .catch(error => console.log(error));
@@ -36,4 +37,4 @@ app.get("/", (req, res) => {
   res.send("Data From Google");
 });
 
-app.listen(process.env.PORT);
+app.listen(process.env.PORT || 4000);
