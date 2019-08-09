@@ -26,6 +26,8 @@ app.get("/:id", (req, res) => {
           array.push(test[i]);
         }
         res.send("Data From Google" + "</br>" + array);
+        res.setHeader("Content-Type", "application/json");
+        res.end(JSON.stringify({ data: array }));
       }
     })
     .catch(error => console.log(error));
