@@ -1,16 +1,33 @@
 let axios = require("axios");
 let cheerio = require("cheerio");
-const fs = require("fs");
+const express = require("express");
+const app = express();
+const port = 5000;
+app.get("/:id", (req, res) => {
+  var param = req.params.id;
+  console.log(param);
+  var title;
+  let url =
+    "https://www.google.com/search?hl=en&as_q=" +
+    param +
+    "&as_epq=&as_oq=&as_eq=&as_nlo=&as_nhi=&lr=lang_en&cr=&as_qdr=all&as_sitesearch=&as_occt=any&safe=images&as_filetype=&as_rights=";
 
-var title;
-let url =
-  "https://www.google.com/search?q=mark+zuckerberg&oq=mark+zuckerberg&aqs=chrome..69i57j0l3j69i60l2.1999j0j7&sourceid=chrome&ie=UTF-8";
-
-axios.get(url).then(response => {
-  if (response.status === 200) {
-    const html = response.data;
-    const $ = cheerio.load(html);
-    title = $("div.AP7Wnd");
-    console.log(title.text());
-  }
+  axios
+    .get(url)
+    .then(response => {
+      if (response.status === 200) {
+        const html = response.data;
+        const $ = cheerio.load(html);
+        title = $("div.AP7Wnd");
+        result = title.text();
+        test = result.split(".");
+        array = [];
+        for (var i = 0; i < 10; i++) {
+          array.push(test[i]);
+        }
+        res.send("Data From Google" + "</br>" + array);
+      }
+    })
+    .catch(error => console.log(error));
 });
+app.listen(port, () => console.log(`Example app listening on port ${port}!`));
