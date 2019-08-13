@@ -22,7 +22,9 @@ app.get("/:id", (req, res) => {
         title = $("div.BNeawe");
         var resultArray = [];
         for (var j = 0; j < title.length; j++) {
-          resultArray.push(String(title[j].children[0].data));
+          if (title[j].children[0].data != undefined) {
+            resultArray.push(String(title[j].children[0].data));
+          }
         }
         var max = -99;
         for (var z = 0; z < resultArray.length; z++) {
